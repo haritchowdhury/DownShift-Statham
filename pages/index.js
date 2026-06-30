@@ -19,7 +19,7 @@ function CategoryPill({ category, activeCategory, onChange }) {
     <button
       type="button"
       onClick={() => onChange(category)}
-      className={`rounded-full border px-4 py-2 font-primary text-sm font-semibold transition ${
+      className={`rounded-full border px-3 py-1.5 font-primary text-sm font-semibold leading-tight transition ${
         isActive
           ? 'border-palette-primary bg-palette-primary text-white'
           : 'border-palette-light bg-white text-palette-dark hover:border-palette-primary'
@@ -37,7 +37,7 @@ function CompactFilterPill({ value, activeValue, onChange }) {
     <button
       type="button"
       onClick={() => onChange(value)}
-      className={`rounded-full border px-2.5 py-1 font-primary text-xs font-semibold transition ${
+      className={`rounded-full border px-2 py-0.5 font-primary text-xs font-semibold leading-tight transition ${
         isActive
           ? 'border-palette-primary bg-palette-primary text-white'
           : 'border-palette-light bg-white text-gray-600 hover:border-palette-primary hover:text-palette-dark'
@@ -53,10 +53,10 @@ function CompactFilterRow({ label, options, activeValue, onChange }) {
 
   return (
     <div>
-      <div className="text-center font-primary text-sm font-extrabold uppercase tracking-wide text-gray-700">
+      <div className="text-center font-primary text-xs font-extrabold uppercase tracking-wide text-gray-700">
         {label}
       </div>
-      <div className="mt-3 flex flex-wrap justify-center gap-1.5">
+      <div className="mt-1.5 flex flex-wrap justify-center gap-1">
         {['All'].concat(options).map(option => (
           <CompactFilterPill
             key={option}
@@ -117,13 +117,13 @@ function ProductCarousel({ eyebrow, title, products, renderMeta, fallbackLabel, 
   }
 
   return (
-    <section className="mx-auto mt-8 max-w-6xl text-left">
+    <section className="mx-auto mt-5 max-w-6xl text-left">
       <div className="flex items-end justify-between gap-4">
         <div>
           <p className="font-primary text-xs font-bold uppercase tracking-wide text-palette-primary">
             {eyebrow}
           </p>
-          <h2 className="mt-1 font-primary text-2xl font-bold text-palette-dark">
+          <h2 className="mt-0.5 font-primary text-xl font-bold text-palette-dark sm:text-2xl">
             {title}
           </h2>
         </div>
@@ -149,24 +149,24 @@ function ProductCarousel({ eyebrow, title, products, renderMeta, fallbackLabel, 
 
       <div
         ref={carouselRef}
-        className="scrollbar-hide mt-4 flex snap-x gap-4 overflow-x-auto pb-3"
+        className="scrollbar-hide mt-3 flex snap-x gap-3 overflow-x-auto pb-2"
       >
         {products.map(product => (
           <Link
             key={product.id}
             href={`/products/${product.id}`}
-            className="group relative h-72 w-64 flex-shrink-0 snap-start overflow-hidden rounded-md border border-palette-lighter bg-white text-left no-underline shadow-lg"
+            className="group relative h-60 w-56 flex-shrink-0 snap-start overflow-hidden rounded-md border border-palette-lighter bg-white text-left no-underline shadow-lg sm:h-64 sm:w-60"
           >
             <div className="absolute inset-0">
               <CarouselImage product={product} fallbackLabel={fallbackLabel} />
             </div>
-            <div className="absolute inset-x-0 bottom-0 bg-white bg-opacity-95 p-4">
+            <div className="absolute inset-x-0 bottom-0 bg-white bg-opacity-95 p-3">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-primary text-xs font-bold uppercase tracking-wide text-palette-primary">
                     {renderMeta(product)}
                   </p>
-                  <h3 className="mt-1 max-h-12 overflow-hidden font-primary text-lg font-bold leading-tight text-palette-dark">
+                  <h3 className="mt-1 max-h-10 overflow-hidden font-primary text-base font-bold leading-tight text-palette-dark">
                     {product.title}
                   </h3>
                 </div>
@@ -376,26 +376,26 @@ function IndexPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      <section className="pt-10 text-center sm:pt-12">
-        <h1 className="font-primary text-4xl font-bold tracking-normal text-palette-dark sm:text-5xl">
+      <section className="pt-5 text-center sm:pt-7">
+        <h1 className="font-primary text-3xl font-bold tracking-normal text-palette-dark sm:text-4xl">
           Downshift Home Goods
         </h1>
-        <p className="mx-auto mt-3 max-w-2xl font-primary text-base font-light leading-7 text-gray-600">
+        <p className="mx-auto mt-1.5 max-w-2xl font-primary text-sm font-light leading-6 text-gray-600 sm:text-base">
           Browse a local catalog of furniture, lighting, storage, textiles, decor, and everyday home pieces.
         </p>
 
-        <div className="mx-auto mt-8 max-w-3xl">
+        <div className="mx-auto mt-4 max-w-3xl">
           <label className="sr-only" htmlFor="product-search">Search products</label>
           <input
             id="product-search"
             value={query}
             onChange={event => setQuery(event.target.value)}
             placeholder="Search products"
-            className="form-input w-full rounded-md border-palette-light bg-white px-4 py-3 font-primary text-base text-palette-dark shadow-sm focus:border-palette-primary focus:ring-palette-primary"
+            className="form-input w-full rounded-md border-palette-light bg-white px-3 py-2.5 font-primary text-sm text-palette-dark shadow-sm focus:border-palette-primary focus:ring-palette-primary sm:text-base"
           />
         </div>
 
-        <div className="mx-auto mt-5 flex max-w-5xl flex-wrap justify-center gap-2">
+        <div className="mx-auto mt-3 flex max-w-5xl flex-wrap justify-center gap-1.5">
           {['All'].concat(facets.categories).map(category => (
             <CategoryPill
               key={category}
@@ -406,7 +406,7 @@ function IndexPage() {
           ))}
         </div>
 
-        <div className="mx-auto mt-5 grid max-w-5xl gap-5 px-4 py-2">
+        <div className="mx-auto mt-3 grid max-w-5xl gap-3 px-2 py-1">
           <CompactFilterRow
             label="Brand"
             options={scopedBrandOptions}
@@ -425,7 +425,7 @@ function IndexPage() {
           <RecentLaunchCarousel products={recentLaunches} />
         )}
 
-        <div className="mt-5 flex items-center justify-center gap-4 font-primary text-sm text-gray-600">
+        <div className="mt-3 flex items-center justify-center gap-4 font-primary text-sm text-gray-600">
           <span className="font-semibold text-palette-dark">{resultsLabel}</span>
           {hasActiveFilter && (
             <button
