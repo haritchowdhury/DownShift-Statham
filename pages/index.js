@@ -384,17 +384,6 @@ function IndexPage() {
           Browse a local catalog of furniture, lighting, storage, textiles, decor, and everyday home pieces.
         </p>
 
-        <div className="mx-auto mt-4 max-w-3xl">
-          <label className="sr-only" htmlFor="product-search">Search products</label>
-          <input
-            id="product-search"
-            value={query}
-            onChange={event => setQuery(event.target.value)}
-            placeholder="Search products"
-            className="form-input w-full rounded-md border-palette-light bg-white px-3 py-2.5 font-primary text-sm text-palette-dark shadow-sm focus:border-palette-primary focus:ring-palette-primary sm:text-base"
-          />
-        </div>
-
         <div className="mx-auto mt-3 flex max-w-5xl flex-wrap justify-center gap-1.5">
           {['All'].concat(facets.categories).map(category => (
             <CategoryPill
@@ -418,6 +407,17 @@ function IndexPage() {
             options={scopedTagOptions}
             activeValue={activeTag}
             onChange={setActiveTag}
+          />
+        </div>
+
+        <div className="mx-auto mt-3 max-w-3xl">
+          <label className="sr-only" htmlFor="product-search">Search products</label>
+          <input
+            id="product-search"
+            value={query}
+            onChange={event => setQuery(event.target.value)}
+            placeholder="Search products"
+            className="form-input w-full rounded-md border-palette-light bg-white px-3 py-2.5 font-primary text-sm text-palette-dark shadow-sm focus:border-palette-primary focus:ring-palette-primary sm:text-base"
           />
         </div>
 
